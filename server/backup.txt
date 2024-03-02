@@ -1,0 +1,8 @@
+CREATE TABLE orderDetails (
+  id VARCHAR(100) PRIMARY KEY,
+  username VARCHAR(255),
+  product_id VARCHAR(255) NOT NULL,
+  quantity INT,
+  ordered_on DATE NOT NULL DEFAULT CURRENT_DATE,
+  total_price FLOAT
+);
