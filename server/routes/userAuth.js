@@ -1,11 +1,10 @@
 import express from "express";
 import call from "../api/call.js";
-
 import { constants } from "../utils/constant.js";
+
 const authRouter = express.Router();
 
 authRouter.post("/login", async (req, res) => {
-  console.log("login page called");
   const username = req.body.username;
   const password = req.body.password;
 
