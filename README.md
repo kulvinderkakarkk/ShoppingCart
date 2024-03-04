@@ -69,8 +69,9 @@ Verify that the tables are created: orderdetails, orderquantity, products
 ## Setup Back-end Node server
 1. cd into the repository
 2. cd into server folder.
-3. run `npm install` to install required packages.
-4. run `npm start` to run server at localhost port 5000.
+3. navigate to `.env` file and enter the credentials which will enable server to connect to database.
+4. run `npm install` to install required packages.
+5. run `npm start` to run server at localhost port 5000.
 
 ## Setup Front-end server
 1. cd into the repository.
