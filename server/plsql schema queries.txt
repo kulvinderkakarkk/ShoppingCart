@@ -1,0 +1,47 @@
+CREATE DATABASE test;
+
+-- SELECT DATABASE test; 
+
+CREATE TABLE IF NOT EXISTS public.orderdetails
+(
+    id character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    username character varying(255) COLLATE pg_catalog."default",
+    product_id text[] COLLATE pg_catalog."default",
+    ordered_on date NOT NULL DEFAULT CURRENT_DATE,
+    total_price double precision,
+    CONSTRAINT orderdetails_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+CREATE TABLE IF NOT EXISTS public.orderquantity
+(
+    order_id character varying(100) COLLATE pg_catalog."default",
+    product_id character varying(100) COLLATE pg_catalog."default",
+    quantity integer,
+    CONSTRAINT fk_order_product FOREIGN KEY (order_id)
+        REFERENCES public.orderdetails (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+CREATE TABLE IF NOT EXISTS public.products
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    description character varying(255) COLLATE pg_catalog."default",
+    title character varying(50) COLLATE pg_catalog."default",
+    price double precision,
+    posted_on date NOT NULL DEFAULT CURRENT_DATE,
+    CONSTRAINT products_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+
+-- GRANT ROLES TO USER 
+
+GRANT ALL ON TABLE public.orderdetails TO <user_name>;
+GRANT ALL ON TABLE public.orderquantity TO <user_name>;
+GRANT ALL ON TABLE public.products TO <user_name>;
