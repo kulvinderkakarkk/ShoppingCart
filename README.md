@@ -57,7 +57,13 @@ CREATE TABLE IF NOT EXISTS public.products
 
 TABLESPACE pg_default;
 ```
+Ensure you have the permission to access the table with the listed username. if not, use the following commands to grant roles.
 
+```
+GRANT ALL ON TABLE public.orderdetails TO <user_name>;
+GRANT ALL ON TABLE public.orderquantity TO <user_name>;
+GRANT ALL ON TABLE public.products TO <user_name>;
+```
 Verify that the tables are created: orderdetails, orderquantity, products
 
 ## Setup Back-end Node server
