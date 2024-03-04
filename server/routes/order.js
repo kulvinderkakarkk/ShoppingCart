@@ -1,6 +1,7 @@
 import express from 'express';
 import { getAllOrders, addOrder, updateOrder, deleteOrder } from '../db/queries/orderDetails.js'
 import { validateJWT } from '../utils/validate.js'
+import { jwtDecode } from "jwt-decode";
 
 const OrderRouter = express.Router();
 
@@ -22,14 +23,17 @@ OrderRouter.post('/addOrder', async(req,res) => {
         res.send({status: false});
         return;
     }
-
+    
+    let productObj = JSON.parse(JSON.stringify(req.body.products))
+    
+    const decodedToken = jwtDecode(req.headers.authorization.split("Bearer ")[1])
     const newOrder = {
-        username: req.body.username,
-        product_id: req.body.product_id,
-        quantity: req.body.quantity,
+        username: decodedToken.username,
+        product_id: Object.keys(productObj),
         total_price: req.body.total_price
     }
-    const Order = await addOrder(newOrder);
+    const quantity = Object.values(productObj)
+    const Order = await addOrder(newOrder, quantity);
     res.send({status: true, body: Order});
 });
 

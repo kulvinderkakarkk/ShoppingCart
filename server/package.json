@@ -12,8 +12,10 @@
   "dependencies": {
     "axios": "^1.6.7",
     "cjs-module-lexer": "^1.2.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
+    "jwt-decode": "^4.0.0",
     "nodemon": "^3.1.0",
     "pg": "^8.11.3",
     "uuid": "^9.0.1"

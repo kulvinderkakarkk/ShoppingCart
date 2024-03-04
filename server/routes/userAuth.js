@@ -7,7 +7,6 @@ const authRouter = express.Router();
 authRouter.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-
   const url = constants.LOGIN_URL;
   const method = "POST";
   const body = JSON.stringify({
